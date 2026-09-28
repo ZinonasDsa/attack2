@@ -2,99 +2,618 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Συμμετοχή στην κλήρωση</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Κλήρωση Δωροεπιταγών</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
             margin: 0;
-            background: #111;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #07111f,
+                    #0d2038
+                );
+
             color: white;
-            font-family: Arial, sans-serif;
 
             min-height: 100vh;
 
             display: flex;
-            align-items: center;
             justify-content: center;
-            text-align: center;
+            align-items: center;
+
+            padding: 20px;
         }
 
-        .box {
-            padding: 40px;
-            max-width: 600px;
+
+        /* =========================
+           Κεντρική κάρτα
+        ========================= */
+
+        .card {
+            width: 100%;
+            max-width: 520px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            border-radius: 22px;
+
+            padding: 35px 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.35);
+
+            backdrop-filter: blur(12px);
         }
+
 
         h1 {
+            margin-top: 0;
+
             font-size: 30px;
+
+            line-height: 1.2;
         }
 
-        .loader {
-            width: 45px;
-            height: 45px;
 
-            border: 5px solid #444;
-            border-top: 5px solid white;
+        h2 {
+            font-size: 23px;
+        }
+
+
+        p {
+            line-height: 1.6;
+
+            font-size: 17px;
+        }
+
+
+        .gift-value {
+            font-size: 25px;
+
+            font-weight: bold;
+
+            margin: 25px 0;
+
+            color: #ffd166;
+        }
+
+
+        /* =========================
+           Κουμπί συμμετοχής
+        ========================= */
+
+        #joinButton {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 18px 20px;
+
+            margin-top: 20px;
+
+            border-radius: 12px;
+
+            background: #18a558;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            box-shadow:
+                0 8px 25px rgba(24,165,88,0.35);
+        }
+
+
+        #joinButton:hover {
+            transform: translateY(-2px);
+        }
+
+
+        #joinButton:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =========================
+           Loader
+        ========================= */
+
+        .loader {
+
+            width: 55px;
+            height: 55px;
+
             border-radius: 50%;
+
+            border: 6px solid rgba(255,255,255,0.2);
+
+            border-top-color: white;
 
             margin: 30px auto;
 
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
         }
 
+
         @keyframes spin {
+
             to {
                 transform: rotate(360deg);
             }
+
         }
+
+
+        /* =========================
+           Τελική οθόνη
+        ========================= */
+
+        .warning-title {
+
+            color: #ff5a5a;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            margin-bottom: 25px;
+        }
+
+
+        .reason-box {
+
+            text-align: left;
+
+            background: rgba(255,255,255,0.07);
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            margin: 25px 0;
+        }
+
+
+        .reason-box div {
+
+            margin: 12px 0;
+
+            line-height: 1.5;
+        }
+
+
+        .danger-box {
+
+            text-align: left;
+
+            background: rgba(255, 60, 60, 0.10);
+
+            border: 1px solid rgba(255, 80, 80, 0.40);
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            margin: 25px 0;
+        }
+
+
+        .danger-box div {
+
+            margin: 12px 0;
+        }
+
+
+        .privacy {
+
+            background: rgba(24, 165, 88, 0.15);
+
+            border: 1px solid rgba(24,165,88,0.5);
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            margin: 25px 0;
+
+            font-weight: bold;
+        }
+
+
+        .lesson {
+
+            margin-top: 30px;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            color: #ffd166;
+        }
+
+
+        .steps {
+
+            margin-top: 25px;
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #111;
+
+            font-size: 19px;
+
+            font-weight: 800;
+        }
+
+
+        .small {
+
+            font-size: 14px;
+
+            color: #cbd5e1;
+
+            margin-top: 20px;
+        }
+
+
+        /* animation αλλαγής */
+
+        .fade-in {
+
+            animation: fadeIn 0.35s ease;
+
+        }
+
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
     </style>
+
 </head>
+
 
 <body>
 
-<div class="box" id="content">
 
-    <h1>🎁 Καταχώρηση συμμετοχής...</h1>
+<div class="card" id="app">
 
-    <p>Παρακαλώ περιμένετε.</p>
 
-    <div class="loader"></div>
+    <!-- ========================================
+         ΠΡΩΤΗ ΟΘΟΝΗ
+    ========================================= -->
+
+    <div id="firstScreen" class="fade-in">
+
+        <h1>
+            🎁 ΚΛΗΡΩΣΗ ΔΩΡΟΕΠΙΤΑΓΩΝ
+        </h1>
+
+        <div class="gift-value">
+
+            3 δωροεπιταγές των €50
+
+        </div>
+
+        <p>
+
+            Η κλήρωση αφορά αποκλειστικά
+            τους συμμετέχοντες της σημερινής
+            εκδήλωσης.
+
+        </p>
+
+        <p>
+
+            Για να συμμετάσχετε, πατήστε:
+
+        </p>
+
+
+        <button id="joinButton">
+
+            ΣΥΜΜΕΤΟΧΗ ΣΤΗΝ ΚΛΗΡΩΣΗ
+
+        </button>
+
+
+        <p class="small">
+
+            Δεν απαιτείται συμπλήρωση προσωπικών στοιχείων.
+
+        </p>
+
+    </div>
+
 
 </div>
 
+
+
 <script>
 
-setTimeout(function () {
+    const app =
+        document.getElementById("app");
 
-    document.getElementById("content").innerHTML = `
-        <h1>⚠️ ΠΡΟΣΟΧΗ!</h1>
+    const joinButton =
+        document.getElementById("joinButton");
 
-        <p>
-            Μόλις σκανάρατε ακόμη ένα QR Code
-            χωρίς να γνωρίζετε ακριβώς πού οδηγεί.
-        </p>
 
-        <p>
-            Αυτό ήταν μέρος της άσκησης
-            κυβερνοασφάλειας.
-        </p>
+    /*
+    ==============================================
+    Όταν πατήσει:
+    "ΣΥΜΜΕΤΟΧΗ ΣΤΗΝ ΚΛΗΡΩΣΗ"
+    ==============================================
+    */
 
-        <p>
-            🔐 Δεν συλλέχθηκαν προσωπικά δεδομένα.
-        </p>
+    joinButton.addEventListener("click", function () {
 
-        <p>
-            <strong>
-                Να ελέγχετε πάντα ένα QR Code
-                πριν ανοίξετε τον σύνδεσμό του.
-            </strong>
-        </p>
-    `;
 
-}, 1500);
+        showLoading();
+
+
+        /*
+        Περιμένουμε περίπου 2 δευτερόλεπτα
+        */
+
+        setTimeout(function () {
+
+            showFinalScreen();
+
+        }, 2000);
+
+
+    });
+
+
+
+    /*
+    ==============================================
+    LOADING SCREEN
+    ==============================================
+    */
+
+    function showLoading() {
+
+
+        app.innerHTML = `
+
+            <div class="fade-in">
+
+                <h1>
+
+                    ⏳ Καταχώρηση συμμετοχής…
+
+                </h1>
+
+
+                <p>
+
+                    Παρακαλώ περιμένετε.
+
+                </p>
+
+
+                <div class="loader"></div>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /*
+    ==============================================
+    ΤΕΛΙΚΗ ΟΘΟΝΗ
+    ==============================================
+    */
+
+    function showFinalScreen() {
+
+
+        app.innerHTML = `
+
+            <div class="fade-in">
+
+
+                <div class="warning-title">
+
+                    ⚠️ ΤΗΝ ΠΑΤΗΣΑΤΕ ΞΑΝΑ!
+
+                </div>
+
+
+                <p>
+
+                    Αυτή τη φορά γνωρίζατε ήδη
+                    ότι ένα QR Code μπορεί να σας
+                    οδηγήσει σε διαφορετική σελίδα.
+
+                </p>
+
+
+                <p>
+
+                    Κι όμως, το σκανάρατε ξανά.
+
+                </p>
+
+
+                <h2>
+
+                    Γιατί;
+
+                </h2>
+
+
+                <div class="reason-box">
+
+                    <div>
+
+                        ✅ Εμφανίστηκε μέσα στην
+                        επίσημη εκδήλωση
+
+                    </div>
+
+
+                    <div>
+
+                        ✅ Σας είπαμε ότι ήταν
+                        «επίσημο»
+
+                    </div>
+
+
+                    <div>
+
+                        🎁 Υπήρχε μια ανταμοιβή
+
+                    </div>
+
+
+                    <div>
+
+                        👥 Το σκάναραν και άλλοι
+                        γύρω σας
+
+                    </div>
+
+                </div>
+
+
+
+                <h2>
+
+                    Σε μια πραγματική επίθεση,
+                    το επόμενο βήμα θα μπορούσε
+                    να σας ζητήσει:
+
+                </h2>
+
+
+                <div class="danger-box">
+
+                    <div>
+
+                        🔐 Κωδικό πρόσβασης
+
+                    </div>
+
+
+                    <div>
+
+                        💳 Στοιχεία κάρτας
+
+                    </div>
+
+
+                    <div>
+
+                        📱 Κωδικό επιβεβαίωσης / OTP
+
+                    </div>
+
+
+                    <div>
+
+                        👤 Προσωπικά στοιχεία
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="privacy">
+
+                    🔒 Δεν συλλέξαμε κανένα
+                    προσωπικό σας δεδομένο.
+
+                </div>
+
+
+
+                <div class="lesson">
+
+                    Το μάθημα:
+
+                    <br><br>
+
+                    Το ότι κάτι φαίνεται επίσημο
+                    δεν σημαίνει ότι δεν χρειάζεται
+                    έλεγχο.
+
+                </div>
+
+
+
+                <div class="steps">
+
+                    🛑 ΣΤΑΜΑΤΩ
+                    &nbsp;→&nbsp;
+                    🔎 ΕΛΕΓΧΩ
+                    &nbsp;→&nbsp;
+                    👥 ΡΩΤΩ
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    }
+
 
 </script>
+
 
 </body>
 </html>
