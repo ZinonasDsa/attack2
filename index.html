@@ -2,9 +2,6 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-
-    <meta http-equiv="refresh" content="1.5; url=/rewards/">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Συμμετοχή στην κλήρωση</title>
@@ -26,6 +23,7 @@
 
         .box {
             padding: 40px;
+            max-width: 600px;
         }
 
         h1 {
@@ -38,7 +36,6 @@
 
             border: 5px solid #444;
             border-top: 5px solid white;
-
             border-radius: 50%;
 
             margin: 30px auto;
@@ -56,24 +53,44 @@
 
 <body>
 
-<div class="box">
+<div class="box" id="content">
 
     <h1>🎁 Καταχώρηση συμμετοχής...</h1>
 
-    <p>
-        Παρακαλώ περιμένετε.
-    </p>
+    <p>Παρακαλώ περιμένετε.</p>
 
     <div class="loader"></div>
 
 </div>
 
-
 <script>
 
 setTimeout(function () {
 
-    window.location.replace("/rewards/");
+    document.getElementById("content").innerHTML = `
+        <h1>⚠️ ΠΡΟΣΟΧΗ!</h1>
+
+        <p>
+            Μόλις σκανάρατε ακόμη ένα QR Code
+            χωρίς να γνωρίζετε ακριβώς πού οδηγεί.
+        </p>
+
+        <p>
+            Αυτό ήταν μέρος της άσκησης
+            κυβερνοασφάλειας.
+        </p>
+
+        <p>
+            🔐 Δεν συλλέχθηκαν προσωπικά δεδομένα.
+        </p>
+
+        <p>
+            <strong>
+                Να ελέγχετε πάντα ένα QR Code
+                πριν ανοίξετε τον σύνδεσμό του.
+            </strong>
+        </p>
+    `;
 
 }, 1500);
 
